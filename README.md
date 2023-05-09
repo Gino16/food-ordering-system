@@ -5,7 +5,7 @@
 * Use Domain Driven Design
 * Use SAGA Pattern
 ## Technologies
-* Java 17 LTS
+* Adoptium OpenJDK 17 LTS
 * Spring Boot
 * Postgres SQL
 * Apache Kafka
