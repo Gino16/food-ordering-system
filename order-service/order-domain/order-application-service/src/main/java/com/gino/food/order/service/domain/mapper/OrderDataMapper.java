@@ -7,6 +7,7 @@ import com.gino.food.domain.valueobject.RestaurantId;
 import com.gino.food.order.service.domain.dto.create.CreateOrderCommand;
 import com.gino.food.order.service.domain.dto.create.CreateOrderResponse;
 import com.gino.food.order.service.domain.dto.create.OrderAddress;
+import com.gino.food.order.service.domain.dto.track.TrackOrderResponse;
 import com.gino.food.order.service.domain.entity.Order;
 import com.gino.food.order.service.domain.entity.OrderItem;
 import com.gino.food.order.service.domain.entity.Product;
@@ -36,6 +37,14 @@ public class OrderDataMapper {
         .deliveryAddress(orderAddressToStreetAddress(createOrderCommand.getAddress()))
         .price(new Money(createOrderCommand.getPrice()))
         .items(orderItemsToOrderItemEntities(createOrderCommand.getItems()))
+        .build();
+  }
+
+  public TrackOrderResponse orderToTrackOrderResponse(Order order) {
+    return TrackOrderResponse.builder()
+        .orderTrackingId(order.getTrackingId().getValue())
+        .orderStatus(order.getOrderStatus())
+        .failureMessages(order.getFailureMessages())
         .build();
   }
 
