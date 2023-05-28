@@ -2,22 +2,12 @@ package com.gino.food.order.service.domain;
 
 import com.gino.food.order.service.domain.dto.create.CreateOrderCommand;
 import com.gino.food.order.service.domain.dto.create.CreateOrderResponse;
-import com.gino.food.order.service.domain.entity.Customer;
-import com.gino.food.order.service.domain.entity.Order;
-import com.gino.food.order.service.domain.entity.Restaurant;
 import com.gino.food.order.service.domain.event.OrderCreatedEvent;
-import com.gino.food.order.service.domain.exception.OrderDomainException;
 import com.gino.food.order.service.domain.mapper.OrderDataMapper;
 import com.gino.food.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
-import com.gino.food.order.service.domain.ports.output.repository.CustomerRepository;
-import com.gino.food.order.service.domain.ports.output.repository.OrderRepository;
-import com.gino.food.order.service.domain.ports.output.repository.RestaurantRepository;
-import java.util.Optional;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -32,6 +22,7 @@ public class OrderCreateCommandHandler {
     OrderCreatedEvent orderCreatedEvent = orderCreateHelper.persistOrder(createOrderCommand);
     log.info("Order is created with id: {}", orderCreatedEvent.getOrder().getId().getValue());
     orderCreatedPaymentRequestMessagePublisher.publish(orderCreatedEvent);
-    return orderDataMapper.orderToCreateOrderResponse(orderCreatedEvent.getOrder(), "Order created successfully");
+    return orderDataMapper.orderToCreateOrderResponse(orderCreatedEvent.getOrder(),
+        "Order created successfully");
   }
 }
