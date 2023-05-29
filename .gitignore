@@ -36,3 +36,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Own folders ###
+/infrastructure/docker-compose/volumes/kafka/broker-*/
+/infrastructure/docker-compose/volumes/zookeeper/data/**
+/infrastructure/docker-compose/volumes/zookeeper/transactions/**
