@@ -1,10 +1,16 @@
 package com.gino.food.order.service.messaging.mapper;
 
+import com.gino.food.domain.valueobject.OrderApprovalStatus;
+import com.gino.food.domain.valueobject.PaymentStatus;
 import com.gino.food.kafka.order.avro.model.PaymentOrderStatus;
 import com.gino.food.kafka.order.avro.model.PaymentRequestAvroModel;
+import com.gino.food.kafka.order.avro.model.PaymentResponseAvroModel;
 import com.gino.food.kafka.order.avro.model.Product;
 import com.gino.food.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
+import com.gino.food.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
 import com.gino.food.kafka.order.avro.model.RestaurantOrderStatus;
+import com.gino.food.order.service.domain.dto.message.PaymentResponse;
+import com.gino.food.order.service.domain.dto.message.RestaurantApprovalResponse;
 import com.gino.food.order.service.domain.entity.Order;
 import com.gino.food.order.service.domain.event.OrderCancelledEvent;
 import com.gino.food.order.service.domain.event.OrderCreatedEvent;
@@ -62,6 +68,35 @@ public class OrderMessagingDataMapper {
         .setPrice(order.getPrice().getAmount())
         .setCreatedAt(orderPaidEvent.getCreatedAt().toInstant())
         .setRestaurantOrderStatus(RestaurantOrderStatus.PAID)
+        .build();
+  }
+
+  public PaymentResponse paymentResponseAvroModelToPaymentResponse(
+      PaymentResponseAvroModel paymentResponseAvroModel) {
+    return PaymentResponse.builder()
+        .id(paymentResponseAvroModel.getId())
+        .sagaId(paymentResponseAvroModel.getSagaId())
+        .paymentId(paymentResponseAvroModel.getPaymentId())
+        .customerId(paymentResponseAvroModel.getCustomerId())
+        .orderId(paymentResponseAvroModel.getOrderId())
+        .price(paymentResponseAvroModel.getPrice())
+        .createdAt(paymentResponseAvroModel.getCreatedAt())
+        .paymentStatus(PaymentStatus.valueOf(paymentResponseAvroModel.getPaymentStatus().name()))
+        .failureMessages(paymentResponseAvroModel.getFailureMessages())
+        .build();
+  }
+
+  public RestaurantApprovalResponse approvalResponseAvroModelToApprovalResponse(
+      RestaurantApprovalResponseAvroModel restaurantApprovalResponseAvroModel) {
+    return RestaurantApprovalResponse.builder()
+        .id(restaurantApprovalResponseAvroModel.getId())
+        .sagaId(restaurantApprovalResponseAvroModel.getSagaId())
+        .restaurantId(restaurantApprovalResponseAvroModel.getRestaurantId())
+        .orderId(restaurantApprovalResponseAvroModel.getOrderId())
+        .createdAt(restaurantApprovalResponseAvroModel.getCreatedAt())
+        .orderApprovalStatus(OrderApprovalStatus.valueOf(
+            restaurantApprovalResponseAvroModel.getOrderApprovalStatus().name()))
+        .failureMessages(restaurantApprovalResponseAvroModel.getFailureMessages())
         .build();
   }
 }
