@@ -7,6 +7,8 @@ import com.gino.food.order.service.domain.dto.track.TrackOrderResponse;
 import javax.validation.Valid;
 
 public interface OrderApplicationService {
+
   CreateOrderResponse createOrder(@Valid CreateOrderCommand createOrderCommand);
+
   TrackOrderResponse trackOrder(@Valid TrackOrderQuery trackOrderQuery);
 }
