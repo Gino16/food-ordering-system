@@ -2,8 +2,6 @@ package com.gino.food.order.service.dataaccess.order.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderItemEntityId implements Serializable {
+
   private Long id;
   private OrderEntity order;
 

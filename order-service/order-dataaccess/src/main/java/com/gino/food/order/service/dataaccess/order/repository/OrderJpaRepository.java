@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderJpaRepository extends JpaRepository<OrderEntity, UUID> {
+
   Optional<OrderEntity> findByTrackingId(UUID trackingId);
 }

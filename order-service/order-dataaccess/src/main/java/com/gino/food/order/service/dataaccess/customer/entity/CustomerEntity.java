@@ -18,6 +18,7 @@ import lombok.Setter;
 @Table(name = "order_customer_m_view", schema = "customer")
 @Entity
 public class CustomerEntity {
+
   @Id
   private UUID id;
 }
