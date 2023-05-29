@@ -2,6 +2,7 @@ package com.gino.food.kafka.producer.service.impl;
 
 import com.gino.food.kafka.producer.service.KafkaProducer;
 import java.io.Serializable;
+import javax.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.specific.SpecificRecordBase;
@@ -26,6 +27,7 @@ public class KafkaProducerImpl<K extends Serializable, V extends SpecificRecordB
         .addCallback(callback);
   }
 
+  @PreDestroy
   public void close() {
     if (kafkaTemplate != null) {
       log.info("Closing kafka producer!");

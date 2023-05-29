@@ -1,11 +1,13 @@
 package com.gino.food.kafka.producer;
 
 import com.gino.food.kafka.config.data.KafkaConfigData;
+import com.gino.food.kafka.config.data.KafkaConsumerConfigData;
 import com.gino.food.kafka.config.data.KafkaProducerConfigData;
 import java.io.Serializable;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.avro.specific.SpecificRecordBase;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
