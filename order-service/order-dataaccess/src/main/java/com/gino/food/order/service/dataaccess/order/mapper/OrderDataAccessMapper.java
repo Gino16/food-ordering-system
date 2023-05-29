@@ -33,6 +33,7 @@ public class OrderDataAccessMapper {
         .trackingId(order.getTrackingId().getValue())
         .address(deliveryAddressToAddressEntity(order.getDeliveryAddress()))
         .price(order.getPrice().getAmount())
+        .orderStatus(order.getOrderStatus())
         .items(orderItemsToOrderItemEntities(order.getItems()))
         .failureMessages(order.getFailureMessages() != null ? String.join(FAILURE_MESSAGE_DELIMITER,
             order.getFailureMessages()) : "")

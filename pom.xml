@@ -25,6 +25,7 @@
     <module>order-service/order-container</module>
     <module>common</module>
     <module>infrastructure</module>
+    <module>customer-service</module>
   </modules>
 
   <properties>
