@@ -24,7 +24,7 @@ public class KafkaProducerConfig<K extends Serializable, V extends SpecificRecor
   public Map<String, Object> producerConfig() {
     return Map.of(
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaConfigData.getBootstrapServers(),
-        kafkaConfigData.getSchemaRegistryUrl(), kafkaConfigData.getSchemaRegistryUrl(),
+        kafkaConfigData.getSchemaRegistryUrlKey(), kafkaConfigData.getSchemaRegistryUrl(),
         ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, kafkaProducerConfigData.getKeySerializerClass(),
         ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
         kafkaProducerConfigData.getValueSerializerClass(),
