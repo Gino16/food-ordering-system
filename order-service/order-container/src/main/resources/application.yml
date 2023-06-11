@@ -21,7 +21,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=order&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
     username: postgres
-    password: gino
+    password: 1234
     driver-class-name: org.postgresql.Driver
     platform: postgres
     schema: classpath:init-schema.sql
