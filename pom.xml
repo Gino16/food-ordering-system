@@ -18,16 +18,10 @@
   <packaging>pom</packaging>
   <modules>
     <module>order-service</module>
-    <module>order-service/order-domain</module>
-    <module>order-service/order-application</module>
-    <module>order-service/order-dataaccess</module>
-    <module>order-service/order-messaging</module>
-    <module>order-service/order-container</module>
     <module>common</module>
     <module>infrastructure</module>
     <module>customer-service</module>
     <module>payment-service</module>
-    <module>payment-service/payment-domain/payment-domain-service</module>
   </modules>
 
   <properties>
@@ -94,6 +88,11 @@
       <dependency>
         <groupId>com.gino.food</groupId>
         <artifactId>kafka-config-data</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.gino.food</groupId>
+        <artifactId>payment-domain-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <!--            TEST            -->
