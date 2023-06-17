@@ -9,6 +9,9 @@ import com.gino.food.domain.valueobject.CustomerId;
 import com.gino.food.payment.service.domain.dto.PaymentRequest;
 import com.gino.food.payment.service.domain.exception.PaymentApplicationServiceException;
 import com.gino.food.payment.service.domain.mapper.PaymentDataMapper;
+import com.gino.food.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
+import com.gino.food.payment.service.domain.ports.output.message.publisher.PaymentCompletedMessagePublisher;
+import com.gino.food.payment.service.domain.ports.output.message.publisher.PaymentFailedMessagePublisher;
 import com.gino.food.payment.service.domain.ports.output.repository.CreditEntryRepository;
 import com.gino.food.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import com.gino.food.payment.service.domain.ports.output.repository.PaymentRepository;
@@ -31,6 +34,9 @@ public class PaymentRequestHelper {
   private final PaymentRepository paymentRepository;
   private final CreditEntryRepository creditEntryRepository;
   private final CreditHistoryRepository creditHistoryRepository;
+  private final PaymentCompletedMessagePublisher paymentCompletedEventDomainEventPublisher;
+  private final PaymentCancelledMessagePublisher paymentCancelledEventDomainEventPublisher;
+  private final PaymentFailedMessagePublisher paymentFailedEventDomainEventPublisher;
 
   @Transactional
   public PaymentEvent persistPayment(PaymentRequest paymentRequest) {
@@ -41,7 +47,8 @@ public class PaymentRequestHelper {
     List<String> failureMessages = new ArrayList<>();
     PaymentEvent paymentEvent =
         paymentDomainService.validateAndInitiatePayment(payment, creditEntry, creditHistories,
-            failureMessages);
+            failureMessages, paymentCompletedEventDomainEventPublisher,
+            paymentFailedEventDomainEventPublisher);
     persistDbObject(payment, creditEntry, creditHistories, failureMessages);
     return paymentEvent;
   }
@@ -62,7 +69,8 @@ public class PaymentRequestHelper {
     List<String> failureMessages = new ArrayList<>();
     PaymentEvent paymentEvent =
         paymentDomainService.validateAndCancelPayment(payment, creditEntry, creditHistories,
-            failureMessages);
+            failureMessages, paymentCancelledEventDomainEventPublisher,
+            paymentFailedEventDomainEventPublisher);
     persistDbObject(payment, creditEntry, creditHistories, failureMessages);
     return paymentEvent;
   }

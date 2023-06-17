@@ -7,6 +7,7 @@ import com.gino.food.order.service.domain.entity.Restaurant;
 import com.gino.food.order.service.domain.event.OrderCreatedEvent;
 import com.gino.food.order.service.domain.exception.OrderDomainException;
 import com.gino.food.order.service.domain.mapper.OrderDataMapper;
+import com.gino.food.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import com.gino.food.order.service.domain.ports.output.repository.CustomerRepository;
 import com.gino.food.order.service.domain.ports.output.repository.OrderRepository;
 import com.gino.food.order.service.domain.ports.output.repository.RestaurantRepository;
@@ -27,6 +28,7 @@ public class OrderCreateHelper {
   private final CustomerRepository customerRepository;
   private final RestaurantRepository restaurantRepository;
   private final OrderDataMapper orderDataMapper;
+  private final OrderCreatedPaymentRequestMessagePublisher orderCreatedEventDomainEventPublisher;
 
   @Transactional
   public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
@@ -34,7 +36,7 @@ public class OrderCreateHelper {
     Restaurant restaurant = checkRestaurant(createOrderCommand);
     Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
     OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order,
-        restaurant);
+        restaurant, orderCreatedEventDomainEventPublisher);
     saveOrder(order);
     log.info("Order is created with id: {}", orderCreatedEvent.getOrder().getId().getValue());
     return orderCreatedEvent;
