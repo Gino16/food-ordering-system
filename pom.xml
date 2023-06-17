@@ -95,6 +95,12 @@
         <artifactId>payment-domain-core</artifactId>
         <version>${project.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>com.gino.food</groupId>
+        <artifactId>payment-application-service</artifactId>
+        <version>${project.version}</version>
+      </dependency>
       <!--            TEST            -->
       <dependency>
         <groupId>org.mockito</groupId>
