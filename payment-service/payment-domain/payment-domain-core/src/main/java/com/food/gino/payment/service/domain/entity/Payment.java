@@ -64,6 +64,9 @@ public class Payment extends AggregateRoot<PaymentId> {
     return createdAt;
   }
 
+  public Money getPrice() {
+    return price;
+  }
 
   public static final class Builder {
 
