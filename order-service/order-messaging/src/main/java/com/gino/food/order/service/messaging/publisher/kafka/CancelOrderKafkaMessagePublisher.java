@@ -1,6 +1,7 @@
 package com.gino.food.order.service.messaging.publisher.kafka;
 
 import com.gino.food.kafka.order.avro.model.PaymentRequestAvroModel;
+import com.gino.food.kafka.producer.KafkaMessageHelper;
 import com.gino.food.kafka.producer.service.KafkaProducer;
 import com.gino.food.order.service.domain.config.OrderServiceConfigData;
 import com.gino.food.order.service.domain.event.OrderCancelledEvent;
@@ -19,7 +20,7 @@ public class CancelOrderKafkaMessagePublisher implements
   private final OrderMessagingDataMapper orderMessagingDataMapper;
   private final OrderServiceConfigData orderServiceConfigData;
   private final KafkaProducer<String, PaymentRequestAvroModel> kafkaProducer;
-  private final OrderKafkaMessageHelper orderKafkaMessageHelper;
+  private final KafkaMessageHelper kafkaMessageHelper;
 
   @Override
   public void publish(OrderCancelledEvent domainEvent) {
@@ -32,7 +33,7 @@ public class CancelOrderKafkaMessagePublisher implements
 
       kafkaProducer.send(orderServiceConfigData.getPaymentRequestTopicName(), orderId,
           paymentRequestAvroModel,
-          orderKafkaMessageHelper.getKafkaCallback(
+          kafkaMessageHelper.getKafkaCallback(
               orderServiceConfigData.getPaymentResponseTopicName(),
               paymentRequestAvroModel, orderId,
               "PaymentRequestAvroModel"));

@@ -17,4 +17,23 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.gino.food</groupId>
+      <artifactId>payment-application-service</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.gino.food</groupId>
+      <artifactId>kafka-producer</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.gino.food</groupId>
+      <artifactId>kafka-consumer</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.gino.food</groupId>
+      <artifactId>kafka-model</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>
