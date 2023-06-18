@@ -101,6 +101,17 @@
         <artifactId>payment-application-service</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.gino.food</groupId>
+        <artifactId>payment-dataaccess</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.gino.food</groupId>
+        <artifactId>payment-messaging</artifactId>
+        <version>${project.version}</version>
+      </dependency>
       <!--            TEST            -->
       <dependency>
         <groupId>org.mockito</groupId>
