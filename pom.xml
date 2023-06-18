@@ -113,6 +113,26 @@
         <artifactId>payment-messaging</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.gino.food</groupId>
+        <artifactId>restaurant-domain-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.gino.food</groupId>
+        <artifactId>restaurant-application-service</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.gino.food</groupId>
+        <artifactId>restaurant-dataaccess</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.gino.food</groupId>
+        <artifactId>restaurant-messaging</artifactId>
+        <version>${project.version}</version>
+      </dependency>
       <!--            TEST            -->
       <dependency>
         <groupId>org.mockito</groupId>
