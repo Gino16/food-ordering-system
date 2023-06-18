@@ -1,4 +1,4 @@
-package com.gino.food.order.service.dataaccess.restaurant.exception;
+package com.gino.food.dataaccess.restaurant.exception;
 
 public class RestaurantDataAccessException extends RuntimeException {
 

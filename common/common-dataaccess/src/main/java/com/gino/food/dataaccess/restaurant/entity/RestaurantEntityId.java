@@ -1,4 +1,4 @@
-package com.gino.food.order.service.dataaccess.restaurant.entity;
+package com.gino.food.dataaccess.restaurant.entity;
 
 import java.io.Serializable;
 import java.util.Objects;

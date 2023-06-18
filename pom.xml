@@ -73,6 +73,11 @@
       </dependency>
       <dependency>
         <groupId>com.gino.food</groupId>
+        <artifactId>common-dataaccess</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.gino.food</groupId>
         <artifactId>kafka-producer</artifactId>
         <version>${project.version}</version>
       </dependency>

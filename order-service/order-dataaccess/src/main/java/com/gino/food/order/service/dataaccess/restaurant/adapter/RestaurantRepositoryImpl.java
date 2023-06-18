@@ -1,8 +1,8 @@
 package com.gino.food.order.service.dataaccess.restaurant.adapter;
 
-import com.gino.food.order.service.dataaccess.restaurant.entity.RestaurantEntity;
+import com.gino.food.dataaccess.restaurant.entity.RestaurantEntity;
+import com.gino.food.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import com.gino.food.order.service.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
-import com.gino.food.order.service.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import com.gino.food.order.service.domain.entity.Restaurant;
 import com.gino.food.order.service.domain.ports.output.repository.RestaurantRepository;
 import java.util.List;

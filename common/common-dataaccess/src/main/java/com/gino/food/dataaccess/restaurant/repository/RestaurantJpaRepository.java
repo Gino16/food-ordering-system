@@ -1,7 +1,7 @@
-package com.gino.food.order.service.dataaccess.restaurant.repository;
+package com.gino.food.dataaccess.restaurant.repository;
 
-import com.gino.food.order.service.dataaccess.restaurant.entity.RestaurantEntity;
-import com.gino.food.order.service.dataaccess.restaurant.entity.RestaurantEntityId;
+import com.gino.food.dataaccess.restaurant.entity.RestaurantEntity;
+import com.gino.food.dataaccess.restaurant.entity.RestaurantEntityId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
