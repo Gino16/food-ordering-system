@@ -9,7 +9,9 @@ import com.gino.food.kafka.order.avro.model.PaymentResponseAvroModel;
 import com.gino.food.kafka.order.avro.model.PaymentStatus;
 import com.gino.food.payment.service.domain.dto.PaymentRequest;
 import java.util.UUID;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PaymentMessagingDataMapper {
 
   public PaymentResponseAvroModel paymentCompletedEventToPaymentResponseAvroModel(
