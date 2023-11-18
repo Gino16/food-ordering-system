@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
 @Builder
-@AllArgsConstructor
 public record ErrorDTO(String code, String message) {
 
 }
