@@ -5,10 +5,9 @@ import com.food.ordering.system.order.service.dataaccess.customer.entity.Custome
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.repository.Repository;
+import org.springframework.stereotype.Repository;
 
-@NoRepositoryBean
-public interface CustomerJpaRepository extends Repository<CustomerEntity, UUID> {
+@Repository
+public interface CustomerJpaRepository extends JpaRepository<CustomerEntity, UUID> {
   Optional<CustomerEntity> findById(UUID id);
 }

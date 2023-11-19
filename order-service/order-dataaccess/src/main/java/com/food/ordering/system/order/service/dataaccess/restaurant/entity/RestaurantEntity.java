@@ -14,17 +14,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@IdClass(RestaurantEntityId.class)
 @Table(name = "order_restaurant_m_view", schema = "restaurant")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@IdClass(RestaurantEntityId.class)
 public class RestaurantEntity {
 
   @Id
-  private UUID id;
+  private UUID restaurantId;
   @Id
   private UUID productId;
 
@@ -42,12 +42,12 @@ public class RestaurantEntity {
       return false;
     }
     RestaurantEntity that = (RestaurantEntity) o;
-    return Objects.equals(id, that.id) && Objects.equals(productId,
+    return Objects.equals(restaurantId, that.restaurantId) && Objects.equals(productId,
         that.productId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, productId);
+    return Objects.hash(restaurantId, productId);
   }
 }

@@ -5,11 +5,13 @@ import com.food.ordering.system.order.service.dataaccess.restaurant.entity.Resta
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@NoRepositoryBean
-public interface RestaurantJpaRepository extends CrudRepository<RestaurantEntity, RestaurantEntityId> {
+@Repository
+public interface RestaurantJpaRepository extends
+    JpaRepository<RestaurantEntity, RestaurantEntityId> {
+
   Optional<List<RestaurantEntity>> findByRestaurantIdAndProductIdIn(UUID restaurantId,
       List<UUID> productIds);
 }

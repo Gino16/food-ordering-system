@@ -1,8 +1,8 @@
 package com.food.ordering.system.order.service.application.rest;
 
-import com.food.ordering.system.order.servide.domain.dto.create.CreateOrderCommand;
-import com.food.ordering.system.order.servide.domain.dto.track.TrackOrderQuery;
-import com.food.ordering.system.order.servide.domain.ports.input.service.OrderApplicationService;
+import com.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
+import com.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;
+import com.food.ordering.system.order.service.domain.ports.input.service.OrderApplicationService;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
