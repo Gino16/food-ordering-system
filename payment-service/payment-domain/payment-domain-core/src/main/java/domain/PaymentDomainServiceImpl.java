@@ -1,18 +1,18 @@
-package com.food.ordering.system.payment.service.domain;
+package domain;
 
-import static com.food.ordering.system.domain.DomainConstants.UTC;
 
+import com.food.ordering.system.domain.DomainConstants;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.PaymentStatus;
-import com.food.ordering.system.payment.service.domain.entity.CreditEntry;
-import com.food.ordering.system.payment.service.domain.entity.CreditHistory;
-import com.food.ordering.system.payment.service.domain.entity.Payment;
-import com.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
-import com.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
-import com.food.ordering.system.payment.service.domain.event.PaymentEvent;
-import com.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
-import com.food.ordering.system.payment.service.domain.valueobject.CreditHistoryId;
-import com.food.ordering.system.payment.service.domain.valueobject.TransactionType;
+import domain.entity.CreditEntry;
+import domain.entity.CreditHistory;
+import domain.entity.Payment;
+import domain.event.PaymentCancelledEvent;
+import domain.event.PaymentCompletedEvent;
+import domain.event.PaymentEvent;
+import domain.event.PaymentFailedEvent;
+import domain.valueobject.CreditHistoryId;
+import domain.valueobject.TransactionType;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -35,11 +35,12 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
     if (failureMessages.isEmpty()) {
       log.info("Payment is initiated for order id: {}", payment.getOrderId().getValue());
       payment.updateStatus(PaymentStatus.COMPLETED);
-      return new PaymentCompletedEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)));
+      return new PaymentCompletedEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
     } else {
       log.info("Payment initiation is failed for order id: {}", payment.getOrderId());
       payment.updateStatus(PaymentStatus.FAILED);
-      return new PaymentFailedEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)), failureMessages);
+      return new PaymentFailedEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)),
+          failureMessages);
     }
   }
 
@@ -54,10 +55,11 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
     if (failureMessages.isEmpty()) {
       log.info("Payment is cancelled for order id: {}", payment.getOrderId());
       payment.updateStatus(PaymentStatus.CANCELLED);
-      return new PaymentCancelledEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)));
+      return new PaymentCancelledEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
     } else {
       log.info("Payment cancellation is failed for order id: {}", payment.getOrderId());
-      return new PaymentFailedEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)), failureMessages);
+      return new PaymentFailedEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)),
+          failureMessages);
     }
 
   }

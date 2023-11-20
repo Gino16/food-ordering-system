@@ -1,4 +1,4 @@
-package com.food.ordering.system.payment.service.domain.valueobject;
+package domain.valueobject;
 
 import com.food.ordering.system.domain.valueobject.BaseId;
 import java.util.UUID;

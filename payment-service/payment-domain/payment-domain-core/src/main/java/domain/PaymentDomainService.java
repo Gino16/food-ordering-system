@@ -1,9 +1,9 @@
-package com.food.ordering.system.payment.service.domain;
+package domain;
 
-import com.food.ordering.system.payment.service.domain.entity.CreditEntry;
-import com.food.ordering.system.payment.service.domain.entity.CreditHistory;
-import com.food.ordering.system.payment.service.domain.entity.Payment;
-import com.food.ordering.system.payment.service.domain.event.PaymentEvent;
+import domain.entity.CreditEntry;
+import domain.entity.CreditHistory;
+import domain.entity.Payment;
+import domain.event.PaymentEvent;
 import java.util.List;
 
 public interface PaymentDomainService {

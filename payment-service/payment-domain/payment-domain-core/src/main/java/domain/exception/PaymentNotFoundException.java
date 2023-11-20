@@ -1,4 +1,4 @@
-package com.food.ordering.system.payment.service.domain.exception;
+package domain.exception;
 
 public class PaymentNotFoundException extends PaymentDomainException{
 
