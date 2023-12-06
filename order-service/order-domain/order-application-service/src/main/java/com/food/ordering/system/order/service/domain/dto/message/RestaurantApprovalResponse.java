@@ -11,6 +11,7 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class RestaurantApprovalResponse {
+
   private String id;
   private String sagaId;
   private String orderId;

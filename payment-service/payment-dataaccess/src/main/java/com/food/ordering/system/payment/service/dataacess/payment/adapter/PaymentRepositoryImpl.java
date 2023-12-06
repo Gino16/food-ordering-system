@@ -4,33 +4,32 @@ import com.food.ordering.system.payment.service.dataacess.payment.mapper.Payment
 import com.food.ordering.system.payment.service.dataacess.payment.repository.PaymentJpaRepository;
 import com.food.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
 import domain.entity.Payment;
-import org.springframework.stereotype.Component;
-
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PaymentRepositoryImpl implements PaymentRepository {
 
-    private final PaymentJpaRepository paymentJpaRepository;
-    private final PaymentDataAccessMapper paymentDataAccessMapper;
+  private final PaymentJpaRepository paymentJpaRepository;
+  private final PaymentDataAccessMapper paymentDataAccessMapper;
 
-    public PaymentRepositoryImpl(PaymentJpaRepository paymentJpaRepository,
-                                 PaymentDataAccessMapper paymentDataAccessMapper) {
-        this.paymentJpaRepository = paymentJpaRepository;
-        this.paymentDataAccessMapper = paymentDataAccessMapper;
-    }
+  public PaymentRepositoryImpl(PaymentJpaRepository paymentJpaRepository,
+      PaymentDataAccessMapper paymentDataAccessMapper) {
+    this.paymentJpaRepository = paymentJpaRepository;
+    this.paymentDataAccessMapper = paymentDataAccessMapper;
+  }
 
-    @Override
-    public Payment save(Payment payment) {
-        return paymentDataAccessMapper
-                .paymentEntityToPayment(paymentJpaRepository
-                        .save(paymentDataAccessMapper.paymentToPaymentEntity(payment)));
-    }
+  @Override
+  public Payment save(Payment payment) {
+    return paymentDataAccessMapper
+        .paymentEntityToPayment(paymentJpaRepository
+            .save(paymentDataAccessMapper.paymentToPaymentEntity(payment)));
+  }
 
-    @Override
-    public Optional<Payment> findByOrderId(UUID orderId) {
-        return paymentJpaRepository.findByOrderId(orderId)
-                .map(paymentDataAccessMapper::paymentEntityToPayment);
-    }
+  @Override
+  public Optional<Payment> findByOrderId(UUID orderId) {
+    return paymentJpaRepository.findByOrderId(orderId)
+        .map(paymentDataAccessMapper::paymentEntityToPayment);
+  }
 }

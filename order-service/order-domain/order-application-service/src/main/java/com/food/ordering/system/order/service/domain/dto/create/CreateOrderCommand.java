@@ -12,6 +12,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class CreateOrderCommand {
+
   @NotNull
   private final UUID customerId;
   @NotNull

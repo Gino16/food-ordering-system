@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderItemEntityId implements Serializable {
+
   private Long id;
   private OrderEntity order;
 

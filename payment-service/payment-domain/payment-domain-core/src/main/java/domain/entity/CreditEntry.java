@@ -1,7 +1,6 @@
 package domain.entity;
 
 import com.food.ordering.system.domain.entity.BaseEntity;
-
 import com.food.ordering.system.domain.valueobject.CustomerId;
 import com.food.ordering.system.domain.valueobject.Money;
 import domain.valueobject.CreditEntryId;

@@ -10,6 +10,7 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class TrackOrderQuery {
+
   @NotNull
   private final UUID orderTrackingId;
 }

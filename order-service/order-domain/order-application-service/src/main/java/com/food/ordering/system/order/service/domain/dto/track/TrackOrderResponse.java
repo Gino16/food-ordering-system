@@ -12,6 +12,7 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class TrackOrderResponse {
+
   @NotNull
   private final UUID orderTrackingId;
   @NotNull

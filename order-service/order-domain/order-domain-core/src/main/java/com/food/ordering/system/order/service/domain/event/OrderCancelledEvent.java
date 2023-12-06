@@ -4,7 +4,7 @@ import com.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.food.ordering.system.order.service.domain.entity.Order;
 import java.time.ZonedDateTime;
 
-public class OrderCancelledEvent extends OrderEvent{
+public class OrderCancelledEvent extends OrderEvent {
 
   private final DomainEventPublisher<OrderCancelledEvent> orderCancelledEventDomainEventPublisher;
 

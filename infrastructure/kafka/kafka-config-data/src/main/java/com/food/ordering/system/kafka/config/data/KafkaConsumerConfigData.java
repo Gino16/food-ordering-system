@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "kafka-consumer-config")
 public class KafkaConsumerConfigData {
+
   private String keyDeserializer;
   private String valueDeserializer;
   private String autoOffsetReset;

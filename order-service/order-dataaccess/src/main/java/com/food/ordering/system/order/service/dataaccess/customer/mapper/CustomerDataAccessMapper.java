@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerDataAccessMapper {
+
   public Customer customerEntityToCustomer(CustomerEntity customer) {
     return new Customer(new CustomerId(customer.getId()));
   }

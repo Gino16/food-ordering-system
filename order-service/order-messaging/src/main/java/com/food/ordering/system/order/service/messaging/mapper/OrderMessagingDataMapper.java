@@ -6,12 +6,12 @@ import com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
 import com.food.ordering.system.kafka.order.avro.model.RestaurantOrderStatus;
+import com.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
+import com.food.ordering.system.order.service.domain.dto.message.RestaurantApprovalResponse;
 import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.event.OrderCancelledEvent;
 import com.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.food.ordering.system.order.service.domain.event.OrderPaidEvent;
-import com.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
-import com.food.ordering.system.order.service.domain.dto.message.RestaurantApprovalResponse;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -94,8 +94,9 @@ public class OrderMessagingDataMapper {
         .restaurantId(restaurantApprovalResponseAvroModel.getRestaurantId())
         .orderId(restaurantApprovalResponseAvroModel.getOrderId())
         .createdAt(restaurantApprovalResponseAvroModel.getCreatedAt())
-        .orderApprovalStatus(com.food.ordering.system.domain.valueobject.OrderApprovalStatus.valueOf(
-            restaurantApprovalResponseAvroModel.getOrderApprovalStatus().name()))
+        .orderApprovalStatus(
+            com.food.ordering.system.domain.valueobject.OrderApprovalStatus.valueOf(
+                restaurantApprovalResponseAvroModel.getOrderApprovalStatus().name()))
         .failureMessages(restaurantApprovalResponseAvroModel.getFailureMessages())
         .build();
   }
