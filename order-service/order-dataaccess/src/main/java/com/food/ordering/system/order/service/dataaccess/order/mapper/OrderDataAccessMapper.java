@@ -1,5 +1,7 @@
 package com.food.ordering.system.order.service.dataaccess.order.mapper;
 
+import static com.food.ordering.system.domain.DomainConstants.FAILURE_MESSAGE_DELIMITER;
+
 import com.food.ordering.system.domain.valueobject.CustomerId;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;
@@ -22,7 +24,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderDataAccessMapper {
 
-  public static final String FAILURE_MESSAGE_DELIMITER = ",";
 
   public OrderEntity orderToOrderEntity(Order order) {
     OrderEntity orderEntity = OrderEntity.builder()
