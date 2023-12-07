@@ -98,17 +98,21 @@ public class PaymentRequestHelper {
     CreditEntry creditEntry = getCreditEntry(payment.getCustomerId());
     List<CreditHistory> creditHistories = getCreditHistory(payment.getCustomerId());
     List<String> failureMessages = new ArrayList<>();
-    persistDbObject(payment, creditEntry, creditHistories, failureMessages);
+    PaymentEvent paymentEvent;
 
     if (PaymentStatus.COMPLETED == paymentStatus) {
-      return paymentDomainService.validateAndInitiatePayment(payment, creditEntry, creditHistories,
+      paymentEvent = paymentDomainService.validateAndInitiatePayment(payment, creditEntry,
+          creditHistories,
           failureMessages, paymentCompletedEventDomainEventPublisher,
           paymentFailedEventDomainEventPublisher);
     } else {
-      return paymentDomainService.validateAndCancelPayment(payment, creditEntry, creditHistories,
+      paymentEvent = paymentDomainService.validateAndCancelPayment(payment, creditEntry,
+          creditHistories,
           failureMessages, paymentCancelledEventDomainEventPublisher,
           paymentFailedEventDomainEventPublisher);
     }
+    persistDbObject(payment, creditEntry, creditHistories, failureMessages);
+    return paymentEvent;
   }
 
 }
