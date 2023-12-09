@@ -18,7 +18,6 @@ public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse, E
 
   private final OrderDomainService orderDomainService;
   private final OrderSagaHelper orderSagaHelper;
-  private final OrderCancelledPaymentRequestMessagePublisher orderCancelledPaymentRequestMessagePublisher;
 
   @Override
   @Transactional
@@ -37,8 +36,7 @@ public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse, E
     log.info("Cancelling order with id: {}", restaurantApprovalResponse.getOrderId());
     Order order = orderSagaHelper.findOrder(restaurantApprovalResponse.getOrderId());
     OrderCancelledEvent domainEvent = orderDomainService.cancelOrderPayment(order,
-        restaurantApprovalResponse.getFailureMessages(),
-        orderCancelledPaymentRequestMessagePublisher);
+        restaurantApprovalResponse.getFailureMessages());
     orderSagaHelper.saveOrder(order);
     log.info("Order with id: {} is cancelling", order.getId().getValue());
     return domainEvent;

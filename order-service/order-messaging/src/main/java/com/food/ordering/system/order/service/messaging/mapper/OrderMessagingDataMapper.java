@@ -28,7 +28,7 @@ public class OrderMessagingDataMapper {
         .setCustomerId(order.getCustomerId().getValue().toString())
         .setOrderId(order.getId().getValue().toString())
         .setPrice(order.getPrice().getAmount())
-        .setCreatedAt(orderCreatedEvent.getCreatedEvent().toInstant())
+        .setCreatedAt(orderCreatedEvent.getCreatedAt().toInstant())
         .setPaymentOrderStatus(PaymentOrderStatus.PENDING)
         .build();
   }
@@ -42,7 +42,7 @@ public class OrderMessagingDataMapper {
         .setCustomerId(order.getCustomerId().getValue().toString())
         .setOrderId(order.getId().getValue().toString())
         .setPrice(order.getPrice().getAmount())
-        .setCreatedAt(orderCancelledEvent.getCreatedEvent().toInstant())
+        .setCreatedAt(orderCancelledEvent.getCreatedAt().toInstant())
         .setPaymentOrderStatus(PaymentOrderStatus.CANCELLED)
         .build();
   }
@@ -64,7 +64,7 @@ public class OrderMessagingDataMapper {
                 .setQuantity(orderItem.getQuantity())
                 .build()).collect(Collectors.toList()))
         .setPrice(order.getPrice().getAmount())
-        .setCreatedAt(orderPaidEvent.getCreatedEvent().toInstant())
+        .setCreatedAt(orderPaidEvent.getCreatedAt().toInstant())
         .setRestaurantOrderStatus(RestaurantOrderStatus.PAID)
         .build();
   }

@@ -26,7 +26,6 @@ public class OrderCreateHelper {
   private final CustomerRepository customerRepository;
   private final RestaurantRepository restaurantRepository;
   private final OrderDataMapper orderDataMapper;
-  private final OrderCreatedPaymentRequestMessagePublisher orderCreatedEventDomainEventPublisher;
 
   @Transactional
   public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
@@ -34,7 +33,7 @@ public class OrderCreateHelper {
     Restaurant restaurant = checkRestaurant(createOrderCommand);
     Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
     OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order,
-        restaurant, orderCreatedEventDomainEventPublisher);
+        restaurant);
     saveOrder(order);
     log.info("Order is created with id: {}", order.getId().getValue());
     return orderCreatedEvent;

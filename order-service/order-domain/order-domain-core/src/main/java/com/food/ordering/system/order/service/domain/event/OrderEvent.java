@@ -7,18 +7,18 @@ import java.time.ZonedDateTime;
 public abstract class OrderEvent implements DomainEvent<Order> {
 
   private final Order order;
-  private final ZonedDateTime createdEvent;
+  private final ZonedDateTime createdAt;
 
-  public OrderEvent(Order order, ZonedDateTime createdEvent) {
+  public OrderEvent(Order order, ZonedDateTime createdAt) {
     this.order = order;
-    this.createdEvent = createdEvent;
+    this.createdAt = createdAt;
   }
 
   public Order getOrder() {
     return order;
   }
 
-  public ZonedDateTime getCreatedEvent() {
-    return createdEvent;
+  public ZonedDateTime getCreatedAt() {
+    return createdAt;
   }
 }
