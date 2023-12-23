@@ -3,7 +3,7 @@ DROP SCHEMA IF EXISTS restaurant CASCADE;
 CREATE SCHEMA restaurant;
 
 CREATE
-EXTENSION IF NOT EXISTS "uuid-ossp";
+    EXTENSION IF NOT EXISTS "uuid-ossp";
 
 DROP TABLE IF EXISTS restaurant.restaurants CASCADE;
 
@@ -56,21 +56,20 @@ ALTER TABLE restaurant.restaurant_products
         REFERENCES restaurant.restaurants (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE RESTRICT
-    NOT VALID;
+        NOT VALID;
 
 ALTER TABLE restaurant.restaurant_products
     ADD CONSTRAINT "FK_PRODUCT_ID" FOREIGN KEY (product_id)
         REFERENCES restaurant.products (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE RESTRICT
-    NOT VALID;
+        NOT VALID;
 
 DROP
-MATERIALIZED VIEW IF EXISTS restaurant.order_restaurant_m_view;
+    MATERIALIZED VIEW IF EXISTS restaurant.order_restaurant_m_view;
 
-CREATE
-MATERIALIZED VIEW restaurant.order_restaurant_m_view
-TABLESPACE pg_default
+CREATE MATERIALIZED VIEW restaurant.order_restaurant_m_view
+    TABLESPACE pg_default
 AS
 SELECT r.id        AS restaurant_id,
        r.name      AS restaurant_name,
@@ -83,29 +82,32 @@ FROM restaurant.restaurants r,
      restaurant.products p,
      restaurant.restaurant_products rp
 WHERE r.id = rp.restaurant_id
-  AND p.id = rp.product_id WITH DATA;
+  AND p.id = rp.product_id
+WITH DATA;
 
 refresh
-materialized VIEW restaurant.order_restaurant_m_view;
+    materialized VIEW restaurant.order_restaurant_m_view;
 
 DROP function IF EXISTS restaurant.refresh_order_restaurant_m_view;
 
 CREATE
-OR replace function restaurant.refresh_order_restaurant_m_view()
-returns trigger
-AS '
-BEGIN
-    refresh materialized VIEW restaurant.order_restaurant_m_view;
-    return null;
-END;
-'  LANGUAGE plpgsql;
+    OR replace function restaurant.refresh_order_restaurant_m_view()
+    returns trigger
+AS
+'
+    BEGIN
+        refresh materialized VIEW restaurant.order_restaurant_m_view;
+        return null;
+    END;
+' LANGUAGE plpgsql;
 
 DROP trigger IF EXISTS refresh_order_restaurant_m_view ON restaurant.restaurant_products;
 
 CREATE trigger refresh_order_restaurant_m_view
     after INSERT OR
-UPDATE OR
-DELETE
-OR truncate
-ON restaurant.restaurant_products FOR each statement
-    EXECUTE PROCEDURE restaurant.refresh_order_restaurant_m_view();
+        UPDATE OR
+        DELETE
+        OR truncate
+    ON restaurant.restaurant_products
+    FOR each statement
+EXECUTE PROCEDURE restaurant.refresh_order_restaurant_m_view();

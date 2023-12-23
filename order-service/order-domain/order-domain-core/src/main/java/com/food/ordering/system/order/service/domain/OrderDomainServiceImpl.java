@@ -2,7 +2,6 @@ package com.food.ordering.system.order.service.domain;
 
 import static com.food.ordering.system.domain.DomainConstants.UTC;
 
-import com.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.entity.Product;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;

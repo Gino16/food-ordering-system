@@ -1,16 +1,10 @@
 package com.food.ordering.system.payment.service.domain.mapper;
 
-import static com.food.ordering.system.domain.DomainConstants.UTC;
-
 import com.food.ordering.system.domain.valueobject.CustomerId;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;
-import com.food.ordering.system.domain.valueobject.PaymentStatus;
 import com.food.ordering.system.payment.service.domain.dto.PaymentRequest;
 import domain.entity.Payment;
-import domain.valueobject.PaymentId;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.UUID;
 import org.springframework.stereotype.Component;
 

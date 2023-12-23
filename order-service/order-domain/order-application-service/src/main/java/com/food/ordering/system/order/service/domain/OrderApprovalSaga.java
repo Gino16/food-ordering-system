@@ -2,8 +2,6 @@ package com.food.ordering.system.order.service.domain;
 
 import static com.food.ordering.system.domain.DomainConstants.UTC;
 
-import com.food.ordering.system.domain.event.DomainEvent;
-import com.food.ordering.system.domain.event.EmptyEvent;
 import com.food.ordering.system.domain.valueobject.OrderStatus;
 import com.food.ordering.system.order.service.domain.dto.message.RestaurantApprovalResponse;
 import com.food.ordering.system.order.service.domain.entity.Order;

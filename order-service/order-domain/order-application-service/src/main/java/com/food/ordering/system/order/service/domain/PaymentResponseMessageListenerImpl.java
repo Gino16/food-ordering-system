@@ -3,7 +3,6 @@ package com.food.ordering.system.order.service.domain;
 import static com.food.ordering.system.domain.DomainConstants.FAILURE_MESSAGE_DELIMITER;
 
 import com.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
-import com.food.ordering.system.order.service.domain.event.OrderPaidEvent;
 import com.food.ordering.system.order.service.domain.ports.input.message.listener.payment.PaymentResponseMessageListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
