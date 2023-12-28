@@ -1,6 +1,6 @@
 package com.food.ordering.system.order.service.domain.outbox.scheduler.payment;
 
-import static com.food.ordering.system.outbox.order.SagaConstants.ORDER_SAGA_NAME;
+import static com.food.ordering.system.saga.order.SagaConstants.ORDER_SAGA_NAME;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
