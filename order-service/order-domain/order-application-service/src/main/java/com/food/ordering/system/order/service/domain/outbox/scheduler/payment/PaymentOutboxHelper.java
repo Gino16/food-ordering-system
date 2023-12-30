@@ -63,6 +63,8 @@ public class PaymentOutboxHelper {
         .createdAt(paymentEventPayload.getCreatedAt())
         .type(ORDER_SAGA_NAME)
         .payload(createPayload(paymentEventPayload))
+        .orderStatus(orderStatus)
+        .sagaStatus(sagaStatus)
         .outboxStatus(outboxStatus)
         .build());
   }

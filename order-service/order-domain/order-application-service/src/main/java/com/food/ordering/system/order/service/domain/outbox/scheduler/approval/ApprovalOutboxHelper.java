@@ -72,6 +72,7 @@ public class ApprovalOutboxHelper {
         .type(ORDER_SAGA_NAME)
         .payload(createPayload(orderApprovalEventPayload))
         .sagaStatus(sagaStatus)
+        .orderStatus(orderStatus)
         .outboxStatus(outboxStatus)
         .build());
 

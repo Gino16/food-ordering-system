@@ -35,7 +35,7 @@ public class OrderCreateCommandHandler {
         OutboxStatus.STARTED,
         UUID.randomUUID()
     );
-    log.error("Returning CreateOrderResponse with order id: {}",
+    log.info("Returning CreateOrderResponse with order id: {}",
         orderCreatedEvent.getOrder().getId());
     return createOrderResponse;
   }
