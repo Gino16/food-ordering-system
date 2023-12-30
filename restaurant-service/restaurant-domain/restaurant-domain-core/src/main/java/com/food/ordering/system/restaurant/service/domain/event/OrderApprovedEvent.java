@@ -19,8 +19,4 @@ public class OrderApprovedEvent extends OrderApprovalEvent {
     this.orderApprovedEventDomainEventPublisher = orderApprovedEventDomainEventPublisher;
   }
 
-  @Override
-  public void fire() {
-    orderApprovedEventDomainEventPublisher.publish(this);
-  }
 }

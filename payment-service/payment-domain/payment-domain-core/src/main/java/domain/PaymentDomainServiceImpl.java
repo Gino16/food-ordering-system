@@ -2,7 +2,6 @@ package domain;
 
 
 import com.food.ordering.system.domain.DomainConstants;
-import com.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.PaymentStatus;
 import domain.entity.CreditEntry;
@@ -24,11 +23,17 @@ import lombok.extern.slf4j.Slf4j;
 public class PaymentDomainServiceImpl implements PaymentDomainService {
 
 
+  private static Money getTotalHistoryAmount(List<CreditHistory> creditHistories,
+      TransactionType transactionType) {
+    return creditHistories.stream()
+        .filter(creditHistory -> transactionType == creditHistory.getTransactionType())
+        .map(CreditHistory::getAmount)
+        .reduce(Money.ZERO, Money::add);
+  }
+
   @Override
   public PaymentEvent validateAndInitiatePayment(Payment payment, CreditEntry creditEntry,
-      List<CreditHistory> creditHistories, List<String> failureMessages,
-      DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher,
-      DomainEventPublisher<PaymentFailedEvent> paymentFailedEventDomainEventPublisher) {
+      List<CreditHistory> creditHistories, List<String> failureMessages) {
     payment.validatePayment(failureMessages);
     payment.initializePayment();
     validateCreditEntry(payment, creditEntry, failureMessages);
@@ -39,22 +44,18 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
     if (failureMessages.isEmpty()) {
       log.info("Payment is initiated for order id: {}", payment.getOrderId().getValue());
       payment.updateStatus(PaymentStatus.COMPLETED);
-      return new PaymentCompletedEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)),
-          paymentCompletedEventDomainEventPublisher);
+      return new PaymentCompletedEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
     } else {
       log.info("Payment initiation is failed for order id: {}", payment.getOrderId());
       payment.updateStatus(PaymentStatus.FAILED);
       return new PaymentFailedEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)),
-          failureMessages, paymentFailedEventDomainEventPublisher);
+          failureMessages);
     }
   }
 
-
   @Override
   public PaymentEvent validateAndCancelPayment(Payment payment, CreditEntry creditEntry,
-      List<CreditHistory> creditHistories, List<String> failureMessages,
-      DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher,
-      DomainEventPublisher<PaymentFailedEvent> paymentFailedEventDomainEventPublisher) {
+      List<CreditHistory> creditHistories, List<String> failureMessages) {
     payment.validatePayment(failureMessages);
     addCreditEntry(payment, creditEntry);
     updateCreditHistory(payment, creditHistories, TransactionType.DEBIT);
@@ -62,16 +63,14 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
     if (failureMessages.isEmpty()) {
       log.info("Payment is cancelled for order id: {}", payment.getOrderId());
       payment.updateStatus(PaymentStatus.CANCELLED);
-      return new PaymentCancelledEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)),
-          paymentCancelledEventDomainEventPublisher);
+      return new PaymentCancelledEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)));
     } else {
       log.info("Payment cancellation is failed for order id: {}", payment.getOrderId());
       return new PaymentFailedEvent(payment, ZonedDateTime.now(ZoneId.of(DomainConstants.UTC)),
-          failureMessages, paymentFailedEventDomainEventPublisher);
+          failureMessages);
     }
 
   }
-
 
   private void validateCreditEntry(Payment payment, CreditEntry creditEntry,
       List<String> failureMessages) {
@@ -82,7 +81,6 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
           + "have enough credit for payment!");
     }
   }
-
 
   private void subtractCreditEntry(Payment payment, CreditEntry creditEntry) {
     creditEntry.subtractCreditAmount(payment.getPrice());
@@ -119,15 +117,6 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
           creditEntry.getCustomerId().getValue());
     }
   }
-
-  private static Money getTotalHistoryAmount(List<CreditHistory> creditHistories,
-      TransactionType transactionType) {
-    return creditHistories.stream()
-        .filter(creditHistory -> transactionType == creditHistory.getTransactionType())
-        .map(CreditHistory::getAmount)
-        .reduce(Money.ZERO, Money::add);
-  }
-
 
   private void addCreditEntry(Payment payment, CreditEntry creditEntry) {
     creditEntry.addCreditAmount(payment.getPrice());
