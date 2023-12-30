@@ -6,9 +6,6 @@ import com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
 import com.food.ordering.system.kafka.order.avro.model.PaymentStatus;
 import com.food.ordering.system.payment.service.domain.dto.PaymentRequest;
 import com.food.ordering.system.payment.service.domain.outbox.model.OrderEventPayload;
-import domain.event.PaymentCancelledEvent;
-import domain.event.PaymentCompletedEvent;
-import domain.event.PaymentFailedEvent;
 import java.util.UUID;
 import org.springframework.stereotype.Component;
 

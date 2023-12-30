@@ -1,6 +1,6 @@
-package com.food.ordering.system.payment.service.dataaccess.outbox.entity;
+package com.food.ordering.system.restaurant.service.dataaccess.restaurant.outbox.entity;
 
-import com.food.ordering.system.domain.valueobject.PaymentStatus;
+import com.food.ordering.system.domain.valueobject.OrderApprovalStatus;
 import com.food.ordering.system.outbox.OutboxStatus;
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -10,7 +10,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,8 +35,7 @@ public class OrderOutboxEntity {
   @Enumerated(EnumType.STRING)
   private OutboxStatus outboxStatus;
   @Enumerated(EnumType.STRING)
-  private PaymentStatus paymentStatus;
-  @Version
+  private OrderApprovalStatus approvalStatus;
   private int version;
 
 
