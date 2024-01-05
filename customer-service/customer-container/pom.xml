@@ -13,8 +13,6 @@
   <artifactId>customer-container</artifactId>
 
   <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -25,12 +23,24 @@
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <groupId>org.food.ordering.system</groupId>
+      <artifactId>customer-domain-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
+      <groupId>org.food.ordering.system</groupId>
+      <artifactId>customer-application-service</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.example</groupId>
+      <artifactId>customer-application</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.example</groupId>
+      <artifactId>customer-dataaccess</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.example</groupId>
+      <artifactId>customer-messaging</artifactId>
     </dependency>
   </dependencies>
 

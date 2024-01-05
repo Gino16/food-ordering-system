@@ -16,6 +16,7 @@
     <module>customer-application</module>
     <module>customer-dataaccess</module>
     <module>customer-messaging</module>
+    <module>customer-domain</module>
   </modules>
 
   <properties>

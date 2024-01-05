@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "order_customer_m_view", schema = "customer")
+@Table(name = "customers")
 @Getter
 @Setter
 @Builder
@@ -21,4 +21,7 @@ public class CustomerEntity {
 
   @Id
   private UUID id;
+  private String username;
+  private String firstName;
+  private String lastName;
 }
